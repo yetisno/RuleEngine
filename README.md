@@ -17,11 +17,13 @@ generate code.
 **Pattern**: a `Pattern` contains mutliple `PatternUnit`, it's a key-value map. `Pattern` is the input of method `evaluate(Pattern pattern)` of `Rule`, and it can pass the value between `Action`, `evaluate()`, `judge()`, `TailFact`. `Pattern` will pass from `Rule.evaluate()` to `Fact.evaluate()`, `Condition.judge()`, `Action.doAction()`, `Fact.evaluate() (Tail)` and so on.
 
     Pattern Pass Flow:
-    `Rule` -> `Fact1, Fact2`
-    `Fact1` -> `Condition` -> `Action` -> `Fact1_t1[Tail]`
-    `Fact1_t1` -> `Condition` -> `Action` -> `Fact1_t2[Tail]`
-    `Fact1_t2` -> `Condition` -> `Action` -> `Fact1_tn[Tail]...`
-    `Fact2` -> `Condition` -> `Action` -> `Fact2_tn[Tail]...`
+    Rule -> Fact1, Fact2
+    Fact1 -> Condition -> Action -> Fact1_t1[Tail]
+    Fact1_t1 -> Condition -> Action -> Fact1_t2[Tail]
+    Fact1_t2 -> Condition -> Action -> Fact1_tn[Tail]...
+    Fact2 -> Condition -> Action -> Fact2_tn[Tail]...
+![alt Pattern Pass Flow][Pattern Pass Flow]
+
 **PatternUnit**: a `PatternUnit` means the unit of `Pattern`, it contain a key-value pair,it could be `Boolean`, `String`, `BigDecimal`, `Number`(Integer, Long, Double ...), `Calendar` and other `Object`. The implemented Class are `BigDecimalPatternUnit`, `BooleanPatternUnit`, `NumberPatternUnit`, `CalendarPatternUnit`, `ObjectPatternUnit` and `StringPatternUnit`.
 
 ---
@@ -60,3 +62,6 @@ pattern.put("Budget", 1500);
 rule.evaluate(pattern);
 // The result of pattern.getString("Level") should be "B"
 ```
+
+
+[Pattern Pass Flow]: ./PatternPassFlow.png "Pattern Pass Flow"
